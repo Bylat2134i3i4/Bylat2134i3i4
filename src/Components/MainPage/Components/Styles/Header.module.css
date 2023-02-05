@@ -1,0 +1,32 @@
+@tailwind components;
+
+@layer components {
+  .MainPage__Header_main {
+    @apply flex w-full h-32 border-2 border-b-0 border-gray-500 bg-dark-blue justify-between items-center
+    MinBlock:flex-col MinBlock:justify-around;
+  }
+  .MainPage__Header_TextBlock {
+    @apply flex w-auto h-3/4 font-bold text-2xl text-white items-center ml-5 MinBlock:h-auto MinBlock:ml-0;
+  }
+  .MainPage__Header_AnotherBlock {
+    @apply flex w-auto h-3/4 items-center mr-5 MinBlock:flex-col MinBlock:h-full MinBlock:mr-0;
+  }
+  .AnotherBlock_Block {
+    @apply flex w-full h-1/2 MinBlock:justify-center MinBlock:mt-4;
+  }
+  .AnotherBlock_Button {
+    @apply transition-all rounded-md w-auto h-full bg-black-blue text-base text-white hover:text-blue-500 hover:bg-white mr-5 MinBlock:mr-0;
+  }
+  .AnotherBlock_InputBlock {
+    @apply flex w-auto h-full border-2 border-gray-500 bg-black-blue text-base rounded-md hover:border-white;
+  }
+  .AnotherBlock_InputBlock_Input {
+    @apply w-auto h-full bg-black-blue rounded-md border-none outline-none;
+  }
+  .AnotherBlock_InputBlock_Icon {
+    @apply transition-colors text-white w-auto h-full hover:text-blue-500;
+  }
+  .AnotherBlock_Burger {
+    @apply transition-colors w-auto h-full text-white hover:text-blue-500 ml-5;
+  }
+}

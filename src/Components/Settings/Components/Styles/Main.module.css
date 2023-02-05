@@ -1,0 +1,44 @@
+@tailwind components;
+
+@layer components {
+  .Settig__Main_base {
+    @apply flex flex-col w-3/4 h-full bg-dark-blue text-white mx-auto border-t-0 border-b-0;
+  }
+  .base__TopBlock {
+    @apply flex w-full h-1/2 bg-dark-blue;
+  }
+  .TopBlock__LeftSide {
+    @apply flex w-1/3 h-full justify-center items-center border-2 border-gray-500 border-r-0 border-t-0;
+  }
+  .LeftSide__Img {
+    @apply h-1/2 w-1/2 rounded-full;
+  }
+  .TopBlock__RightSide {
+    @apply flex flex-col justify-around w-2/3 h-full border-2 border-gray-500 border-t-0;
+  }
+  .RightSide__MainText {
+    @apply flex w-full h-auto font-bold justify-center;
+  }
+  .RightSide__Input {
+    @apply w-3/4 h-auto bg-black-blue rounded-md mx-auto;
+  }
+  .RightSide__Button {
+    @apply transition-all h-auto w-auto mx-auto rounded-md bg-blue-500 border-b-4 border-white hover:text-blue-500 hover:bg-white hover:border-blue-500;
+  }
+
+  .base__BottonBlock {
+    @apply flex w-full h-1/2;
+  }
+  .BottonBlock__Block {
+    @apply flex flex-col justify-between w-1/2 h-full border-r-2 border-gray-500;
+  }
+  .BlockLeft__TextBlock {
+    @apply flex justify-center font-bold w-full h-auto;
+  }
+  .BlockLeft__Input {
+    @apply w-3/4 h-auto bg-black-blue mx-auto rounded-md;
+  }
+  .BlockLeft__Button {
+    @apply w-auto rounded-md h-auto mx-auto bg-blue-500 border-b-4 border-white hover:text-blue-500 hover:bg-white hover:border-blue-500;
+  }
+}

@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .MainPage__LeftBar_main {
+    @apply absolute flex flex-col w-40 h-full bg-dark-blue top-0 left-0 bottom-0 border-2 border-gray-500;
+  }
+  .MainPage__LeftBar_TopBlock {
+    @apply flex w-full h-1/4 justify-center items-center bg-dark-blue;
+  }
+  .TopBlock__img {
+    @apply rounded-full w-1/2 h-1/2;
+  }
+  .MainPage__Header_BottomBlock {
+    @apply flex flex-col w-full h-full bg-[url('../../../../../Img/General.jpg')] bg-cover;
+  }
+  .BottomBlock_GeneralBlock {
+    @apply flex flex-col w-3/4 h-3/4 m-auto justify-center bg-black-blue;
+  }
+  .GeneralBlock_button {
+    @apply flex flex-wrap justify-center transition-all w-full h-auto bg-none border-0 text-base text-white hover:text-blue-500 hover:bg-white mt-1 mb-1;
+  }
+  .GeneralBlock_hr {
+    @apply w-3/4 h-px mx-auto bg-gray-500;
+  }
+}

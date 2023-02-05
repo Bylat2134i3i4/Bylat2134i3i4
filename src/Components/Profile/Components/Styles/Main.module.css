@@ -1,0 +1,25 @@
+@tailwind components;
+
+@layer components {
+  .Main__base {
+    @apply flex flex-col justify-between w-11/12 h-3/4 bg-black-blue border-2 border-gray-500 rounded-md text-white text-base m-auto;
+  }
+  .Base__GeneralBlock {
+    @apply flex w-3/4 h-auto justify-around mx-auto;
+  }
+  .GeneralBlock_TextBlock {
+    @apply flex w-auto h-full mr-2;
+  }
+  .GeneralBlock_InputBlock {
+    @apply flex w-full h-full justify-between;
+  }
+  .InputBlock_Input {
+    @apply w-full h-full outline-none border-none bg-black-blue text-center;
+  }
+  .InputBlock_Icon {
+    @apply w-auto h-full;
+  }
+  .GeneralBlock_EazyText {
+    @apply flex w-1/2 h-full justify-start;
+  }
+}

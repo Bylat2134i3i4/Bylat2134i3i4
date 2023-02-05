@@ -1,0 +1,30 @@
+@tailwind components;
+
+@layer components {
+  .Profile__base {
+    @apply flex flex-col w-full h-full;
+  }
+  .Profile__header {
+    @apply flex w-full h-20 bg-dark-blue border-2 border-gray-500;
+  }
+  .Profile__main {
+    @apply flex flex-row w-full h-full border-2 border-gray-500 border-t-0
+    MinBlock:flex-col;
+  }
+  .main__LeftSide {
+    @apply flex flex-col justify-start w-1/4 h-full bg-black-blue border-r-2 border-gray-500 
+    MinBlock:flex-row MinBlock:h-1/4 MinBlock:w-full MinBlock:items-center MinBlock:border-r-0 MinBlock:border-b-2;
+  }
+  .LeftSide__Img {
+    @apply w-auto h-1/4 mt-10 mx-auto rounded-sm 
+    MinBlock:h-5/6 MinBlock:w-auto MinBlock:mt-0 MinBlock:ml-10;
+  }
+  .LeftSide__TextBlock {
+    @apply flex w-auto flex-wrap h-auto text-lg font-bold mx-auto 
+    MinBlock:ml-10 MinBlock:w-auto MinBlock:text-base;
+  }
+  .main__RightSide {
+    @apply flex flex-col w-3/4 h-full bg-[url('../../../Img/General.jpg')] bg-cover
+    MinBlock:flex-row MinBlock:h-3/4 MinBlock:w-full;
+  }
+}

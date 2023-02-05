@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .MainPage__Footer_main {
+    @apply flex w-full h-1/4 flex-col justify-center border-2 border-t-0 border-gray-500 bg-dark-blue text-white;
+  }
+  .MainPage__Footer_TextBlock {
+    @apply flex w-full h-auto justify-center font-bold text-lg;
+  }
+  .MainPage__Footer_General {
+    @apply flex flex-row content-start flex-wrap w-3/4 h-3/4 m-auto overflow-y-auto scroll-smooth;
+  }
+  .MainPage__Footer_General::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  .MainPage__Footer_General::-webkit-scrollbar-thumb {
+    @apply bg-blue-700 rounded-md;
+  }
+}

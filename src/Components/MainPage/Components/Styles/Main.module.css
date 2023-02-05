@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .MainPage__Main_base {
+    @apply flex flex-col w-full h-4/6 border-2 border-gray-500 bg-dark-blue;
+  }
+  .MainPage__Main_TextBlock {
+    @apply flex w-full h-auto text-lg text-white font-bold justify-center;
+  }
+  .MainPage_Main_GeneralBlock {
+    @apply flex flex-row content-start flex-wrap w-3/4 h-3/4 m-auto overflow-y-auto;
+  }
+  .MainPage_Main_GeneralBlock::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  .MainPage_Main_GeneralBlock::-webkit-scrollbar-thumb {
+    @apply bg-blue-700 rounded-md;
+  }
+}

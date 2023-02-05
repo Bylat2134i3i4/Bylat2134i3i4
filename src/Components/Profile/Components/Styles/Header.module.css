@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+  .Profile__Header_main {
+    @apply flex h-full w-11/12 mx-auto text-white items-center justify-between;
+  }
+  .Header__TextBlock {
+    @apply flex h-auto w-auto font-bold text-lg;
+  }
+
+  .Header__Icon {
+    @apply transition-colors h-8 w-8 hover:text-blue-700;
+  }
+}

@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .General__Settig_base {
+    @apply flex flex-col w-full h-full border-2 border-gray-500;
+  }
+  .base__Header {
+    @apply flex w-full border-b-2 border-gray-500 h-auto bg-dark-blue;
+  }
+  .base_Main {
+    @apply flex flex-col w-full h-full bg-[url('../../../Img/General.jpg')] bg-cover;
+  }
+}

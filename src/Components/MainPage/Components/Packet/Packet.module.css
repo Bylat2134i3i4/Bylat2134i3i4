@@ -1,0 +1,26 @@
+@tailwind components;
+
+@layer components {
+  .Frame {
+    @apply flex flex-grow m-px flex-col border-gray-500 border-2 w-1/4 bg-black-blue text-white justify-between MinBlock:w-1/2;
+  }
+
+  .Frame__Maintext {
+    @apply flex w-full h-auto text-base justify-center;
+  }
+
+  .Frame__CountBlock {
+    @apply flex text-sm w-11/12 mx-auto h-auto;
+  }
+
+  .Frame__BottomBlock {
+    @apply flex text-sm w-11/12 mx-auto h-1/6 justify-between;
+  }
+
+  .BottomBlock_Img {
+    @apply h-full w-auto mr-5 rounded-full;
+  }
+  .BottomBlock_Text {
+    @apply flex h-full text-sm items-center;
+  }
+}
