@@ -2,7 +2,7 @@
 
 @layer components {
   .MainPage__Main_base {
-    @apply flex flex-col w-full h-4/6 border-2 border-gray-500 bg-dark-blue;
+    @apply flex flex-col w-full h-5/6 border-2 border-gray-500 bg-dark-blue;
   }
   .MainPage__Main_TextBlock {
     @apply flex w-full h-auto text-lg text-white font-bold justify-center;

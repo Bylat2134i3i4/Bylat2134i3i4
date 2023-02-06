@@ -2,7 +2,7 @@
 
 @layer components {
   .MainPage__Header_main {
-    @apply flex w-full h-32 border-2 border-b-0 border-gray-500 bg-dark-blue justify-between items-center
+    @apply flex w-full h-1/6 border-2 border-b-0 border-gray-500 bg-dark-blue justify-between items-center
     MinBlock:flex-col MinBlock:justify-around;
   }
   .MainPage__Header_TextBlock {
