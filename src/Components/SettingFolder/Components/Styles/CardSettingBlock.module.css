@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+  .CardSetBlock__main {
+    @apply flex flex-col justify-around w-full h-full;
+  }
+  .main__Input {
+    @apply w-3/4 h-auto mx-auto bg-black-blue rounded-md;
+  }
+  .main__ButtonBlock {
+    @apply flex w-3/4 justify-around h-auto mx-auto;
+  }
+  .ButtonBlock__Button {
+    @apply transition-all w-auto h-auto border-b-4 rounded-md border-white bg-blue-500 hover:bg-white hover:text-blue-500 hover:border-blue-500;
+  }
+}

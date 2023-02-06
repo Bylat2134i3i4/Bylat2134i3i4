@@ -1,0 +1,13 @@
+@tailwind components;
+
+@layer components {
+  .Game__base {
+    @apply flex flex-col w-full h-full border-2 border-gray-500;
+  }
+  .base__header {
+    @apply flex w-full h-auto border-b-2 border-gray-500 bg-dark-blue;
+  }
+  .base__main {
+    @apply flex w-full h-full bg-[url('../../../Img/General.jpg')] bg-cover justify-center items-center;
+  }
+}

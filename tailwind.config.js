@@ -11,7 +11,7 @@ module.exports = {
       },
       screens: {
         'MinBlock': { 'raw': '(max-width: 560px)' },
-        'MiddleBlock': { 'raw': '(min-width: 541px)' },
+        'MiddleBlock': { 'raw': '(max-width: 700px)' },
         'LargeBlock': { 'raw': '(max-width: 1500px)' },
         'sm': '501px'
       }

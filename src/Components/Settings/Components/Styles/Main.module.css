@@ -5,16 +5,20 @@
     @apply flex flex-col w-3/4 h-full bg-dark-blue text-white mx-auto border-t-0 border-b-0;
   }
   .base__TopBlock {
-    @apply flex w-full h-1/2 bg-dark-blue;
+    @apply flex w-full h-1/2 bg-dark-blue
+    MiddleBlock:flex-col;
   }
   .TopBlock__LeftSide {
-    @apply flex w-1/3 h-full justify-center items-center border-2 border-gray-500 border-r-0 border-t-0;
+    @apply flex w-1/3 h-full justify-center items-center border-2 border-gray-500 border-r-0 border-t-0
+    MiddleBlock:w-full MiddleBlock:h-1/3 MiddleBlock:border-r-2;
   }
   .LeftSide__Img {
-    @apply h-1/2 w-1/2 rounded-full;
+    @apply h-1/2 w-1/2 rounded-full
+    MiddleBlock:w-auto;
   }
   .TopBlock__RightSide {
-    @apply flex flex-col justify-around w-2/3 h-full border-2 border-gray-500 border-t-0;
+    @apply flex flex-col justify-around w-2/3 h-full border-2 border-gray-500 border-t-0
+    MiddleBlock:w-full MiddleBlock:h-2/3;
   }
   .RightSide__MainText {
     @apply flex w-full h-auto font-bold justify-center;
@@ -27,10 +31,12 @@
   }
 
   .base__BottonBlock {
-    @apply flex w-full h-1/2;
+    @apply flex w-full h-1/2
+    MiddleBlock:flex-col;
   }
   .BottonBlock__Block {
-    @apply flex flex-col justify-between w-1/2 h-full border-r-2 border-gray-500;
+    @apply flex flex-col justify-between w-1/2 h-full border-r-2 border-gray-500
+    MiddleBlock:w-full MiddleBlock:h-1/2 MiddleBlock:border-2 MiddleBlock:border-t-0;
   }
   .BlockLeft__TextBlock {
     @apply flex justify-center font-bold w-full h-auto;

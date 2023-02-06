@@ -1,0 +1,38 @@
+@tailwind components;
+
+@layer components {
+  .Game__Main_base {
+    @apply flex w-3/4 h-3/4 flex-col border-2 rounded-md border-gray-500 text-white text-base bg-black-blue;
+  }
+  .base__TopBlock {
+    @apply flex h-1/5 w-full items-center justify-center border-b-2 border-gray-500;
+  }
+  .base__BottomBlock {
+    @apply flex w-full h-4/5
+    MiddleBlock:flex-col;
+  }
+  .BottomBlock__LeftSide {
+    @apply flex flex-col w-1/5 justify-around h-full border-r-2 border-gray-500
+    MiddleBlock:flex-row MiddleBlock:w-full MiddleBlock:h-1/4 MiddleBlock:border-r-0 MiddleBlock:border-b-2;
+  }
+  .LeftSide__Block {
+    @apply flex flex-col items-center w-full h-1/5 justify-between
+    MiddleBlock:w-auto MiddleBlock:h-full MiddleBlock:justify-around MinBlock:text-xs;
+  }
+  .Block__Element {
+    @apply flex justify-center w-full h-auto;
+  }
+  .BottomBlock__RightSide {
+    @apply flex flex-col w-4/5 h-full justify-between
+    MiddleBlock:w-full MiddleBlock:h-3/4;
+  }
+  .RightSide__TextBlock {
+    @apply justify-center h-1/5 w-full items-center;
+  }
+  .RightSide__ButtonBlock {
+    @apply mt-auto justify-around w-full h-1/5 items-center;
+  }
+  .ButtonBlock__Button {
+    @apply transition-all w-auto h-auto rounded-md border-b-4 border-white hover:text-black hover:border-black;
+  }
+}

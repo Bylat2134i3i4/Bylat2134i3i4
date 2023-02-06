@@ -2,7 +2,7 @@
 
 @layer components {
   .General__Settig_base {
-    @apply flex flex-col w-full h-full border-2 border-gray-500;
+    @apply flex flex-col w-full h-full border-2 border-gray-500 overflow-x-hidden overflow-y-auto;
   }
   .base__Header {
     @apply flex w-full border-b-2 border-gray-500 h-auto bg-dark-blue;
