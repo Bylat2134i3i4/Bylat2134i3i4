@@ -5,9 +5,9 @@
     @apply flex flex-col w-full h-full overflow-hidden;
   }
   .bain__Header {
-    @apply flex w-full h-auto bg-dark-blue border-2 border-gray-500 border-b-0;
+    @apply flex w-full h-20 bg-dark-blue border-2 border-gray-500 border-b-0;
   }
   .bain__Main {
-    @apply flex w-full h-auto bg-[url('../../../Img/General.jpg')] bg-cover justify-center items-center border-2 border-gray-500;
+    @apply flex w-full h-full bg-[url('../../../Img/General.jpg')] bg-cover justify-center items-center border-2 border-gray-500;
   }
 }

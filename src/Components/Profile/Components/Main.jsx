@@ -3,7 +3,7 @@ import MainCss from './Styles/Main.module.css';
 import {AiFillEye} from 'react-icons/ai';
 import classNames from 'classnames';
 
-const Main = () => {
+const Main = (props) => {
   const [Type, ChangeType] = useState({
     Type1: "password",
     Type2: "password"
@@ -12,6 +12,8 @@ const Main = () => {
     Color1: "text-black",
     Color2: "text-black"
   })
+ 
+
   const Helper = (ChangedInput) => {
     if (ChangedInput === 1){
       if (Type.Type1==="text"){
@@ -36,24 +38,24 @@ const Main = () => {
       <div className={MainCss.Base__GeneralBlock}>
         <div className={MainCss.GeneralBlock_TextBlock}>Телефон</div>
         <div className={MainCss.GeneralBlock_InputBlock}>
-          <input type={Type.Type1} value={"+79274139312"} className={MainCss.InputBlock_Input} onChange={() => ""}/>
+          <input type={Type.Type1} value={props.data.login} className={MainCss.InputBlock_Input} onChange={() => ""}/>
           <AiFillEye className={classNames(MainCss.InputBlock_Icon, color.Color1)} onClick={() => Helper(1)}/>
         </div>
       </div>
       <div className={MainCss.Base__GeneralBlock}>
         <div className={MainCss.GeneralBlock_TextBlock}>Пароль</div>
         <div className={MainCss.GeneralBlock_InputBlock}>
-          <input type={Type.Type2} value={"w9w9w9"} className={MainCss.InputBlock_Input} onChange={() => ""}/>
+          <input type={Type.Type2} value={props.data.password} className={MainCss.InputBlock_Input} onChange={() => ""}/>
           <AiFillEye className={classNames(MainCss.InputBlock_Icon, color.Color2)} onClick={() => Helper(2)}/>
         </div>
       </div>
       <div className={MainCss.Base__GeneralBlock}>
         <div className={MainCss.GeneralBlock_EazyText}>Общее число папок </div>
-        <div className={MainCss.GeneralBlock_EazyText}>0</div>
+        <div className={MainCss.GeneralBlock_EazyText}>{props.emount_folders}</div>
       </div>
       <div className={MainCss.Base__GeneralBlock}>
         <div className={MainCss.GeneralBlock_EazyText}>Общее число карточек </div>
-        <div className={MainCss.GeneralBlock_EazyText}>0</div>
+        <div className={MainCss.GeneralBlock_EazyText}>{props.emount_card}</div>
       </div>
     </div>
   );

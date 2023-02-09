@@ -2,9 +2,13 @@ import React, {useState} from 'react';
 import CreateFolderCss from './Styles/CreateFolder.module.css';
 import {IoIosCloseCircle} from 'react-icons/io';
 import classNames from 'classnames';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {CreateFold} from './../../../State/AutorisSlice';
 
 const CreateFolder = (props) => {
+  const dispatch = useDispatch();
+  const persons = useSelector(state => state.Autoris.list.persons)
+  const CurrentPerson = persons.filter(el => el.online === true);
   const [InputValue, ChangeInputValue] = useState("");
   const [InputColor, ChangeInputColor] = useState("")
 
@@ -15,6 +19,15 @@ const CreateFolder = (props) => {
     }else{
       return false;
     }
+  }
+
+  const CreateNewFolder = (name) => {
+    dispatch(CreateFold({
+      user_id: CurrentPerson[0].id,
+      name: name,
+      user_icon: CurrentPerson[0].icon,
+      user_name: CurrentPerson[0].name
+    }))
   }
 
   return (
@@ -31,8 +44,9 @@ const CreateFolder = (props) => {
         <button className={CreateFolderCss.ButtonBlock__Button} onClick={
           () => {
             if (CheckInput()){
+              CreateNewFolder(InputValue);
               ChangeInputColor("shadow-lg shadow-green-500");
-              setTimeout(() => {props.StateCreateFolder()}, 3000)
+              setTimeout(() => {props.StateCreateFolder()}, 2000)
             }else{
               ChangeInputColor("shadow-lg shadow-red-500");
             }

@@ -4,8 +4,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import {AiFillEye} from 'react-icons/ai';
 import classNames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
+import {ChangeOnline} from './../../State/AutorisSlice';
 
 const Reg = () => {
+  const list = useSelector(state => state.Autoris.list.persons);
+  const dispatch = useDispatch();
   const navite = useNavigate();
   const [InputType, ChangeInputType] = useState("text");
   const [EyeColor, ChangeEyeType] = useState("text-white");
@@ -27,6 +31,10 @@ const Reg = () => {
     }else{
       return '0';
     }
+  }
+
+  const ChangeUserOnline = (id) => {
+    dispatch(ChangeOnline(id));
   }
 
   return (
@@ -52,11 +60,20 @@ const Reg = () => {
           <button className={AutoCss.App__LinkBlock_ButtonBlock_Button} onClick={
             () => {
                 if (CheckInput() === "0"){
-                  ChangeErrorColor({
-                    FirstInputRed: "shadow-lg shadow-green-700",
-                    SecondInputRed: "shadow-lg shadow-green-700"
-                  });
-                  setTimeout(() => {navite("/general");}, 3000)
+                  const CurrentUser = list.filter(el => el.login === PhoneInput && el.password === PasswordInput);
+                  if (list.length !== 0 && CurrentUser.length !== 0){
+                    ChangeUserOnline(CurrentUser[0].id);
+                    ChangeErrorColor({
+                      FirstInputRed: "shadow-lg shadow-green-700",
+                      SecondInputRed: "shadow-lg shadow-green-700"
+                    });
+                    setTimeout(() => {navite("/general");}, 3000)
+                  }else{
+                    ChangeErrorColor({
+                      FirstInputRed: "shadow-lg shadow-red-500",
+                      SecondInputRed: "shadow-lg shadow-red-500"
+                    });
+                  }
                 }
                 if (CheckInput() === "1"){
                   ChangeErrorColor({

@@ -4,8 +4,12 @@ import InputMask from 'react-input-mask';
 import { NavLink, useNavigate} from 'react-router-dom';
 import {AiFillEye} from 'react-icons/ai';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import {CreateUser} from './../../State/AutorisSlice';
 
 const Regist = () => {
+  const dispatch = useDispatch();
+  const persons = useSelector(el => el.Autoris.list.persons);
   const navigate = useNavigate();
   const [InputType, ChangeInputType] = useState("text");
   const [EyeColor, ChangeEyeType] = useState("text-white");
@@ -17,6 +21,10 @@ const Regist = () => {
   const [PhoneInput, ChangePhoneInput] = useState("");
   const [PasswordInput, ChangePasswordInput] = useState("");
   const [UserNameInput, ChangeUserNameInput] = useState("");
+
+  const ChangeStore = (name, login, password, icon, online) => {
+    dispatch(CreateUser({name: name, login: login, password: password, icon: icon, online: online}));
+  }
 
   const CheckInput = () => {
     const Regular_Expression_For_Phone = /.7.9[+ 0-9]{2}.[+ 0-9]{7}/;
@@ -57,15 +65,24 @@ const Regist = () => {
         </div>
         <div className={RegCss.App__LinkBlock_ButtonBlock}>
           <button className={RegCss.App__LinkBlock_ButtonBlock_Button} onClick={
-            el => {
-
+            () => {
+              const IsExist = persons.some(el => el.login === PhoneInput && el.password === PasswordInput && el.name === UserNameInput);
               if (CheckInput() === "0"){
-                ChangeErrorColor({
-                  FirstInputRed: "shadow-lg shadow-green-600",
-                  SecondInputRed: "shadow-lg shadow-green-600",
-                  ThirdInputRed: "shadow-lg shadow-green-600"
-                });
-                setTimeout(() => {navigate("/")}, 3000);
+                if (IsExist){
+                  ChangeErrorColor({
+                    FirstInputRed: "shadow-lg shadow-red-500",
+                    SecondInputRed: "shadow-lg shadow-red-500",
+                    ThirdInputRed: "shadow-lg shadow-red-500"
+                  });
+                }else{
+                  ChangeErrorColor({
+                    FirstInputRed: "shadow-lg shadow-green-600",
+                    SecondInputRed: "shadow-lg shadow-green-600",
+                    ThirdInputRed: "shadow-lg shadow-green-600"
+                  });
+                  ChangeStore(UserNameInput, PhoneInput, PasswordInput, "", false);
+                  setTimeout(() => {navigate("/")}, 3000);
+                }
               }
               if (CheckInput() === "1"){
                 ChangeErrorColor({
