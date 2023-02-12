@@ -45,7 +45,6 @@ const Autoris = createSlice({
       })
     },
     CreateFold(state, action) {
-
       state.list.folders.push({
         user_Id: action.payload.user_id,
         id_folder: state.list.folders.length === 0 ? 1 : state.list.folders[state.list.folders.length - 1].id_folder + 1,
@@ -53,8 +52,17 @@ const Autoris = createSlice({
         icon: action.payload.user_icon,
         amount_card: 0,
         user_name: action.payload.user_name,
+        focus: false,
         card: []
       })
+    },
+    ChangeFocus(state, action) {
+      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].focus = action.payload.status;
+    },
+    CloseFocus(state, action) {
+      if (state.list.folders.filter(el => el.focus === true).length > 0) {
+        state.list.folders.filter(el => el.focus === true)[0].focus = false;
+      }
     },
     DeleteFolder(state, action) {
       state.list.folders = state.list.folders.filter(el => el.id_folder !== action.payload.id_folder);
@@ -119,5 +127,5 @@ const Autoris = createSlice({
   }
 })
 
-export const { CreateUser, CreateFold, DeleteFolder, CreateCard, DeleteCard, ChangeOnline, ChangeIcon, ChangeLogin, ChangePassword, ChangeCard, GameInit, Game_DeleteCard, Game_ChangeCardType, Game_AddCard, CloseField, Change_GeneralCardType } = Autoris.actions
+export const { CreateUser, CreateFold, DeleteFolder, CreateCard, DeleteCard, ChangeOnline, ChangeIcon, ChangeLogin, ChangePassword, ChangeCard, GameInit, Game_DeleteCard, Game_ChangeCardType, Game_AddCard, CloseField, Change_GeneralCardType, ChangeFocus, CloseFocus } = Autoris.actions
 export default Autoris.reducer

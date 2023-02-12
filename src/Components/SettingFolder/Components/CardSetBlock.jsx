@@ -47,6 +47,7 @@ const CardSettingBlock = (props) => {
 
   return (
     <div className={CardSetCss.CardSetBlock__main}>
+      <div className='flex w-full h-auto text-base font-bold justify-center'>{props.folder_name}</div>
       <input placeholder='передняя сторона' className={classNames(CardSetCss.main__Input, ShowError.Show1)} value={props.InputValue.Value1} onChange={el => props.ChangeInputValue({Value1: el.target.value, Value2: props.InputValue.Value2})}/>
       <input placeholder='оборотная сторона' className={classNames(CardSetCss.main__Input, ShowError.Show2)} value={props.InputValue.Value2} onChange={el => props.ChangeInputValue({Value1: props.InputValue.Value1, Value2: el.target.value})}/>
       <div className={CardSetCss.main__ButtonBlock}>
