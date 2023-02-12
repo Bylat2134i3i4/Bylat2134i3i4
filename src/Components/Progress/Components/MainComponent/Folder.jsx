@@ -9,13 +9,20 @@ const Folder = (props) => {
   let Now = 0;
   let Good = 0;
   if (CurrentFolder[0].card.length > 0){
-    CurrentFolder.map(el => el.card.map(val => {
-      if (val.card_type === "новые"){News += 1}
+    for (let i=0; i<CurrentFolder[0].card.length; i ++){
+      if (CurrentFolder[0].card[i].card_type === "новые"){News += 1}
       else{
-        if (val.card_type === "изучаемые"){Now +=1}
+        if (CurrentFolder[0].card[i].card_type === "изучаемые"){Now +=1}
         else{Good += 1}
       }
-    }))
+    }
+    // CurrentFolder.map(el => el.card.map(val => {
+    //   if (val.card_type === "новые"){News += 1}
+    //   else{
+    //     if (val.card_type === "изучаемые"){Now +=1}
+    //     else{Good += 1}
+    //   }
+    // }))
     News = Math.floor(News/CurrentFolder[0].card.length * 100);
     Now = Math.floor(Now/CurrentFolder[0].card.length * 100);
     Good = Math.floor(Good/CurrentFolder[0].card.length * 100);

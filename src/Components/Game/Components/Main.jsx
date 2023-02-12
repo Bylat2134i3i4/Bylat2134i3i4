@@ -45,17 +45,28 @@ const Main = () => {
       let News = 0;
       let Now = 0;
       let Good = 0;
-      CardArr[0].cards.map(el => {
-        if (el.card_type === "новые"){
+      for (let i=0; i<CardArr[0].cards.length; i++){
+        if (CardArr[0].cards[i].card_type === "новые"){
           News +=1;
         }else{
-          if (el.card_type === "изучаемые"){
+          if (CardArr[0].cards[i].card_type === "изучаемые"){
             Now += 1;
           }else{
             Good += 1;
           }
         }
-      });
+      }
+      // CardArr[0].cards.map(el => {
+      //   if (el.card_type === "новые"){
+      //     News +=1;
+      //   }else{
+      //     if (el.card_type === "изучаемые"){
+      //       Now += 1;
+      //     }else{
+      //       Good += 1;
+      //     }
+      //   }
+      // });
       if (Type === 1){
         return News;
       }else{

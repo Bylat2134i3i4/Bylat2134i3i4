@@ -21,7 +21,7 @@
     @apply flex w-auto h-full border-2 border-gray-500 bg-black-blue text-base rounded-md hover:border-white;
   }
   .AnotherBlock_InputBlock_Input {
-    @apply w-auto h-full bg-black-blue rounded-md border-none outline-none;
+    @apply w-auto h-full bg-black-blue rounded-md border-none outline-none text-white;
   }
   .AnotherBlock_InputBlock_Icon {
     @apply transition-colors text-white w-auto h-full hover:text-blue-500;

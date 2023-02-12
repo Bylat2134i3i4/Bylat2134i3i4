@@ -60,7 +60,7 @@ const CardSettingBlock = (props) => {
                   isExit = CurrentFolder[0].card.some(el => el.front === props.InputValue.Value1 || el.back === props.InputValue.Value2);
                 }
                 if (isExit){
-                  ChangeShowError({Show1: ShowError.Show1, Show2: "shadow-lg shadow-red-500"});
+                  ChangeShowError({Show1: "shadow-lg shadow-red-500", Show2: "shadow-lg shadow-red-500"});
                 }else{
                   setTimeout(() => {Base()}, 3000);
                   CreateCardEvent(props.Folder_Id, props.InputValue.Value1, props.InputValue.Value2);

@@ -9,7 +9,7 @@ const Main = () => {
 
   return (
     <div className={MainCss.Main__base}>
-      {FolderCurPers.length === 0 ? console.log("error!") : FolderCurPers.map(el => <Folder key={el.id_folder} data={{folder_name: el.name, emount: el.amount_card, icon: CurrentPerson[0].icon, user_name: CurrentPerson[0].name}}/>)}
+      {FolderCurPers.length === 0 ? <div /> : FolderCurPers.map(el => <Folder key={el.id_folder} data={{folder_name: el.name, emount: el.amount_card, icon: CurrentPerson[0].icon, user_name: CurrentPerson[0].name}}/>)}
     </div>
   );
 }
