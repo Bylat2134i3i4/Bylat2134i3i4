@@ -2,17 +2,29 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import MainCss from './Main.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {Game_DeleteCard, Game_ChangeCardType, Game_AddCard} from './../../../State/AutorisSlice';
+import {Game_DeleteCard, Game_ChangeCardType, Game_AddCard, Change_GeneralCardType} from './../../../State/AutorisSlice';
 
 const Main = () => {
   const dispatch = useDispatch();
   const CardArr = useSelector(state => state.Autoris.list.current_game);
+  const folder = CardArr[0].folder_id;
+  const UserFolders = useSelector(state => state.Autoris.list.folders).filter(el => el.id_folder === folder)[0].card
 
   const [Show, ChangeShow] = useState("hidden");
   const [ShowBlock, ChangeShowBlock] = useState({
     Visible1: "flex",
     Visible2: "hidden"
   })
+
+  const ChangeCardsTypes = (front) => {
+      const type = UserFolders.filter(el => el.front === front)[0].card_type;
+      if (type === "новые"){
+        dispatch(Change_GeneralCardType({id: folder, front: front,  new_card_type: "изучаемые"}));
+      }
+      if (type === "изучаемые"){
+        dispatch(Change_GeneralCardType({id: folder, front: front,  new_card_type: "пройденные"}))
+      }
+  }
 
   const DeleteCardEvent = (id) => {
     dispatch(Game_DeleteCard({id: id}));
@@ -98,16 +110,15 @@ const Main = () => {
         <div className={MainCss.BottomBlock__RightSide}>
             <div className={classNames(MainCss.RightSide__TextBlock, Show)}>{CurrentElement(2)}</div>
             <div className={classNames(MainCss.RightSide__ButtonBlock, ShowBlock.Visible2)}><button className='transition-all italic text-blue-500 hover:underline' onClick={() =>  {
-              if (CardArr[0].cards.length > 0){
-                if (CardArr[0].cards[0].card_type === "пройденные"){
-                  DeleteCardEvent(CardArr[0].cards[0].id_card);
-                }else{
-                  AddCardEvent(CardArr[0].cards[0], CardArr[0].cards[CardArr[0].cards.length - 1].id_card + 1);
-                  DeleteCardEvent(CardArr[0].cards[0].id_card);
-                }
+              if (CardArr[0].cards[0].card_type === "пройденные"){
+                ChangeCardsTypes(CardArr[0].cards[0].front);
+                DeleteCardEvent(CardArr[0].cards[0].id_card);
+              }else{
+                AddCardEvent(CardArr[0].cards[0], CardArr[0].cards[CardArr[0].cards.length - 1].id_card + 1);
+                DeleteCardEvent(CardArr[0].cards[0].id_card);
               }
-                ChangeShowBlock({Visible1: "flex", Visible2: "hidden"}); 
-                ChangeShow("hidden")
+              ChangeShowBlock({Visible1: "flex", Visible2: "hidden"}); 
+              ChangeShow("hidden")
               }}>Продолжить</button></div>
             <div className={classNames(MainCss.RightSide__ButtonBlock, ShowBlock.Visible1)}>
               <button className={classNames(MainCss.ButtonBlock__Button, "bg-red-500")} onClick={() => {

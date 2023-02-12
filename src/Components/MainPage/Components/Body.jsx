@@ -3,13 +3,27 @@ import BodyCss from './Styles/Main.module.css';
 import Packet from './Packet/Packet';
 import {useSelector} from 'react-redux';
 
-const Body = () => {
+const Body = (props) => {
   const ListFolders = useSelector(state => state.Autoris.list.folders);
   const ListUsers = useSelector(state => state.Autoris.list.persons);
 
 
   const CurrentUser = ListUsers.filter(el => el.online === true);
-  const UserFolders = ListFolders.filter(el => el.user_Id === CurrentUser[0].id);
+  // console.log(ListFolders.filter(el => el.user_Id === CurrentUser[0].id));
+  let UserFolders = ListFolders.filter(el => el.user_Id === CurrentUser[0].id);
+  
+  // const [UserFolders, ChangeUserFolders] = useState([])
+
+  // useEffect(() => {
+  //   ChangeUserFolders(ListFolders.filter(el => el.user_Id === CurrentUser[0].id));
+  // })
+
+  
+  if (props.StringSearh !== ""){
+    // console.log(props.StringSearh.length);
+    UserFolders = UserFolders.filter(el => !el.name.indexOf(props.StringSearh));
+  }
+
   return (
     <div className={BodyCss.MainPage__Main_base}>
       <div className={BodyCss.MainPage__Main_TextBlock}>Ваши папки</div>

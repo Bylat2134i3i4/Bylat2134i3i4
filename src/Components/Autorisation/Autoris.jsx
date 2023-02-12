@@ -54,7 +54,24 @@ const Reg = () => {
       </div>
       <div className={AutoCss.App__LinkBlock}>
         <div className={AutoCss.App__LinkBlock_AutorisLinkBlock}>
-          <NavLink to='/registration' className={AutoCss.App__LinkBlock_AutorisLinkBlock_Link}>Хотите зарегистрироваться?</NavLink>
+          <NavLink to='/registration' className={AutoCss.App__LinkBlock_AutorisLinkBlock_Link} 
+        //   onClick={
+        //     () => {fetch("http://cerver/", {
+        //       method: "POST",
+        //       header: {
+        //         'Content-Type': 'application/json'
+        //       },
+        //       body: {
+        //         'name': 'булат'
+        //       }
+        //     })
+        //   .then(response => response.json())
+        //   .then(response => {
+        //     console.log(response);
+        //   })
+        // }
+        //   }
+          >Хотите зарегистрироваться?</NavLink>
         </div>
         <div className={AutoCss.App__LinkBlock_ButtonBlock}>
           <button className={AutoCss.App__LinkBlock_ButtonBlock_Button} onClick={

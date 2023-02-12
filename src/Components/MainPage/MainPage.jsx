@@ -9,6 +9,8 @@ const MainPage = () => {
   
   const [LeftBar, ChangeLeftBar] = useState(false);
   const [CreateFolder, ChangeCreateFolder] = useState(false);
+
+  const [StringSearh, ChangeStringSearh] = useState("");
   // const [MainBar, ChangeMainBar] = useState(false);
 
   const StateLeftBar = () => {
@@ -26,8 +28,8 @@ const MainPage = () => {
       {LeftBar && <LeftBarBlock />}
       {CreateFolder && <CreateFolderBlock StateCreateFolder={StateCreateFolder}/>}
       {/* {MainBar && <SettMainFold />} */}
-      <Header StateLeftBar={StateLeftBar} StateCreateFolder={StateCreateFolder}/>
-      <Body/>
+      <Header StateLeftBar={StateLeftBar} StateCreateFolder={StateCreateFolder} ChangeStringSearh={ChangeStringSearh}/>
+      <Body StringSearh={StringSearh}/>
     </div>
   );
 }

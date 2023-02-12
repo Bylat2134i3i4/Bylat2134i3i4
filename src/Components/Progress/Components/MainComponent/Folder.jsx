@@ -12,10 +12,13 @@ const Folder = (props) => {
     CurrentFolder.map(el => el.card.map(val => {
       if (val.card_type === "новые"){News += 1}
       else{
-        if (val.card_type === "запоминаемые"){Now +=1}
+        if (val.card_type === "изучаемые"){Now +=1}
         else{Good += 1}
       }
     }))
+    News = Math.floor(News/CurrentFolder[0].card.length * 100);
+    Now = Math.floor(Now/CurrentFolder[0].card.length * 100);
+    Good = Math.floor(Good/CurrentFolder[0].card.length * 100);
   }
 
   return (
@@ -33,19 +36,19 @@ const Folder = (props) => {
         <div className={FolderCss.RightBlock__ProgressBlock}>
           <div className={classNames(FolderCss.ProgressBlock__TextBlock, "text-blue-500")}>Новые</div>
           <div className={FolderCss.ProgressBlock__Block}>
-            <div className={classNames(FolderCss.Block__Progress, "bg-blue-500", "w-"+toString(News))}>{News}%</div>
+            <div className={classNames(FolderCss.Block__Progress, "bg-blue-500")} style={News===0 ? {width: 10+'%'} : {width: News+'%'}}>{News}%</div>
           </div>
         </div>
         <div className={FolderCss.RightBlock__ProgressBlock}>
           <div className={classNames(FolderCss.ProgressBlock__TextBlock, "text-yellow-500")}>Запоминаемые</div>
           <div className={FolderCss.ProgressBlock__Block}>
-            <div className={classNames(FolderCss.Block__Progress, "bg-yellow-500", "w-"+toString(Now))}>{Now}%</div>
+            <div className={classNames(FolderCss.Block__Progress, "bg-yellow-500")} style={Now===0 ? {width: 10+'%'} : {width: Now+'%'}}>{Now}%</div>
           </div>
         </div>
         <div className={FolderCss.RightBlock__ProgressBlock}>
           <div className={classNames(FolderCss.ProgressBlock__TextBlock, "text-green-500")}>Пройденные</div>
           <div className={FolderCss.ProgressBlock__Block}>
-            <div className={classNames(FolderCss.Block__Progress, "bg-green-500", "w-"+toString(Good))}>{Good}%</div>
+            <div className={classNames(FolderCss.Block__Progress, "bg-green-500")} style={Good===0 ? {width: 10+'%'} : {width: Good+'%'}}>{Good}%</div>
           </div>
         </div>
       </div>

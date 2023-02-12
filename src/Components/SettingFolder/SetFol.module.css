@@ -10,7 +10,7 @@
     MinBlock:w-full MinBlock:h-1/4;
   }
   .LeftSide__Folder {
-    @apply flex flex-wrap w-full h-auto justify-center border-2 border-gray-500
+    @apply transition-colors flex flex-wrap w-full h-auto justify-center border-2 border-gray-500 hover:bg-blue-500
     MinBlock:text-center;
   }
   .main__RightSide {
