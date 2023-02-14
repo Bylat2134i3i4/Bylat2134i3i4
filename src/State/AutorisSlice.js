@@ -1,19 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const InitBase = createAsyncThunk(
+  'Autoris/InitBase',
+  async function () {
+    const response = await fetch("http://cerver/", {
+      method: "GET",
+      header: {
+        'Content-Type': 'json/application'
+      }
+    })
+      .then(response => response.json())
+
+    return response;
+  }
+);
+
+export const SaveinBase = createAsyncThunk(
+  'Autoris/SaveinBase',
+  async function (state) {
+    const response = await fetch("http://cerver/", {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: JSON.stringify(state)
+    })
+      .then(response => response.json())
+
+    return response;
+  }
+)
 
 const Autoris = createSlice({
   name: 'Autoris',
   initialState: {
     list: {
-      persons: [
-        {
-          id: 1,
-          name: "булат",
-          login: "+7(927)4139312",
-          password: "t5t5t5",
-          icon: "https://andraursuta.com/wp-content/uploads/2017/04/penguin.jpg",
-          online: true
-        }
-      ],
+      StatusOfLoad: "load",
+      persons: [],
       folders: [],
       current_game: [],
     },
@@ -124,6 +147,28 @@ const Autoris = createSlice({
     Change_GeneralCardType(state, action) {
       state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.filter(el => el.front === action.payload.front)[0].card_type = action.payload.new_card_type;
     }
+  },
+  extraReducers: {
+    [InitBase.fulfilled]: (state, action) => {
+      state.list.persons = action.payload.persons;
+      state.list.folders = action.payload.folders;
+
+      for (let i = 0; i < state.list.persons.length; i++) {
+        state.list.persons[i].id = Number(state.list.persons[i].id);
+      }
+
+      for (let i = 0; i < state.list.folders.length; i++) {
+        state.list.folders[i].id_folder = Number(state.list.folders[i].id_folder);
+        state.list.folders[i].user_Id = Number(state.list.folders[i].user_Id);
+        state.list.folders[i].amount_card = Number(state.list.folders[i].amount_card);
+        for (let j = 0; j < state.list.folders[i].card.length; j++) {
+          state.list.folders[i].card[j].id_card = Number(state.list.folders[i].card[j].id_card);
+          state.list.folders[i].card[j].id_folder = Number(state.list.folders[i].card[j].id_folder);
+        }
+      }
+
+      state.list.StatusOfLoad = "installed";
+    },
   }
 })
 

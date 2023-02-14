@@ -1,15 +1,28 @@
 import AutoCss from './../StylesForRegAutoris/Styles.module.css';
 import InputMask from 'react-input-mask';
 import { NavLink, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {AiFillEye} from 'react-icons/ai';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import {ChangeOnline} from './../../State/AutorisSlice';
+import {ChangeOnline, InitBase} from './../../State/AutorisSlice';
 
 const Reg = () => {
-  const list = useSelector(state => state.Autoris.list.persons);
   const dispatch = useDispatch();
+  const load = useSelector(state => state.Autoris.list.StatusOfLoad);
+  const [ShowInputs, ChangeShowInputs] = useState("hidden");
+
+  useEffect(() => {
+    if (load === "load"){
+      dispatch(InitBase());
+    }
+    if (load === "installed"){
+      ChangeShowInputs("flex");
+    }
+  }, [dispatch, load]);
+
+  const list = useSelector(state => state.Autoris.list.persons);
+
   const navite = useNavigate();
   const [InputType, ChangeInputType] = useState("text");
   const [EyeColor, ChangeEyeType] = useState("text-white");
@@ -37,10 +50,11 @@ const Reg = () => {
     dispatch(ChangeOnline(id));
   }
 
+
   return (
-    <div className={AutoCss.App__main}>
-      <div className={AutoCss.App__MettingTextBlock}>Авторизация</div>
-      <div className={AutoCss.App__InputBlock}>
+    <div className={classNames(AutoCss.App__main, ShowInputs==="hidden" ? "animate-pulse" : "animate-none")}>
+      <div className={AutoCss.App__MettingTextBlock}>{ShowInputs==="hidden" ? "Загрузка данных" : "Авторизация"}</div>
+      <div className={classNames("flex flex-col w-full h-auto items-center", ShowInputs)}>
           <InputMask mask={"+7(\\999)9999999"} className={classNames(AutoCss.App__InputBlock_Input, ErrorColor.FirstInputRed)} alwaysShowMask value={PhoneInput} onChange={el => ChangePhoneInput(el.target.value)}/>
           <div className={classNames(AutoCss.App__InputBlock_Input, ErrorColor.SecondInputRed)}>
             <InputMask mask={"a9a9a9"} value={PasswordInput} onChange={el => ChangePasswordInput(el.target.value)} type={InputType} className={AutoCss.App__InputBlock_PasswordInput} alwaysShowMask/>
@@ -52,25 +66,9 @@ const Reg = () => {
             }/></NavLink>
           </div>
       </div>
-      <div className={AutoCss.App__LinkBlock}>
+      <div className={classNames("flex-col h-auto w-full items-stretch", ShowInputs)}>
         <div className={AutoCss.App__LinkBlock_AutorisLinkBlock}>
           <NavLink to='/registration' className={AutoCss.App__LinkBlock_AutorisLinkBlock_Link} 
-        //   onClick={
-        //     () => {fetch("http://cerver/", {
-        //       method: "POST",
-        //       header: {
-        //         'Content-Type': 'application/json'
-        //       },
-        //       body: {
-        //         'name': 'булат'
-        //       }
-        //     })
-        //   .then(response => response.json())
-        //   .then(response => {
-        //     console.log(response);
-        //   })
-        // }
-        //   }
           >Хотите зарегистрироваться?</NavLink>
         </div>
         <div className={AutoCss.App__LinkBlock_ButtonBlock}>

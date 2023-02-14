@@ -2,13 +2,18 @@ import React from 'react';
 import LeftBarCss from './Styles/LeftBar.module.css';
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {CloseField} from './../../../State/AutorisSlice';
+import {CloseField, SaveinBase} from './../../../State/AutorisSlice';
 
 const LeftBar = () => {
   const dispatch = useDispatch();
+  const state = useSelector(st => st.Autoris.list);
 
   const CloseFieldEvent = (id) => {
     dispatch(CloseField({id: id}));
+  }
+
+  const SaveInBaseEvent = () => {
+    dispatch(SaveinBase(state));
   }
 
   const CurrentPerson = useSelector(state => state.Autoris.list.persons).filter(el => el.online === true);
@@ -25,7 +30,7 @@ const LeftBar = () => {
           <hr className={LeftBarCss.GeneralBlock_hr}/>
           <NavLink to="/general/settings"><button className={LeftBarCss.GeneralBlock_button}>Настройки</button></NavLink>
           <hr className={LeftBarCss.GeneralBlock_hr}/>
-          <NavLink to="/"><button className={LeftBarCss.GeneralBlock_button} onClick={() => CloseFieldEvent(CurrentPerson[0].id)}>Выход</button></NavLink>
+          <NavLink to="/"><button className={LeftBarCss.GeneralBlock_button} onClick={() => {CloseFieldEvent(CurrentPerson[0].id); SaveInBaseEvent()}}>Выход</button></NavLink>
         </div>
       </div>
     </div>
