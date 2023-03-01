@@ -2,7 +2,7 @@ import React from 'react';
 import LeftBarCss from './Styles/LeftBar.module.css';
 import {NavLink} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {CloseField, SaveinBase} from './../../../State/AutorisSlice';
+import {CloseField, SaveinBase, ChangeStatusOfLoad} from './../../../State/AutorisSlice';
 
 const LeftBar = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const LeftBar = () => {
   }
 
   const SaveInBaseEvent = () => {
+    dispatch(ChangeStatusOfLoad());
     dispatch(SaveinBase(state));
   }
 

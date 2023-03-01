@@ -22,6 +22,7 @@ const Reg = () => {
   }, [dispatch, load]);
 
   const list = useSelector(state => state.Autoris.list.persons);
+  console.log(list);
 
   const navite = useNavigate();
   const [InputType, ChangeInputType] = useState("text");

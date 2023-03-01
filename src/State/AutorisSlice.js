@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const InitBase = createAsyncThunk(
-  'Autoris/InitBase',
+// JSON.stringify
+
+export const get_users_id_pass_login = createAsyncThunk(
+  'Autoris/get_users_id_pass_login',
   async function () {
-    const response = await fetch("http://cerver/", {
+    const response = await fetch("http://cerver/index.php?get_log_pass_id", {
       method: "GET",
       header: {
         'Content-Type': 'json/application'
@@ -15,49 +17,237 @@ export const InitBase = createAsyncThunk(
   }
 );
 
-export const SaveinBase = createAsyncThunk(
-  'Autoris/SaveinBase',
-  async function (state) {
-    const response = await fetch("http://cerver/", {
+export const del_fold = createAsyncThunk(
+  'Autoris/del_fold',
+  async function (id) {
+    const API = "http://cerver/index.php?delete_folder=" + id;
+    const response = await fetch(API, {
+      method: "GET",
+      header: {
+        'Content-Type': 'json/application'
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const del_card = createAsyncThunk(
+  'Autoris/del_card',
+  async function (id) {
+    const API = "http://cerver/index.php?delete_card=" + id;
+    const response = await fetch(API, {
+      method: "GET",
+      header: {
+        'Content-Type': 'json/application'
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const get_data_current_user = createAsyncThunk(
+  'Autoris/get_data_current_user',
+  async function (id) {
+    const API = "http://cerver/index.php?get_user=" + id;
+    const response = await fetch(API, {
+      method: "GET",
+      header: {
+        'Content-Type': 'json/application'
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const add_user = createAsyncThunk(
+  'Autoris/add_user',
+  async function (data) {
+    const API = "http://cerver/index.php?add_user";
+    const response = await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
-      body: JSON.stringify(state)
+      body: {
+        info: JSON.stringify(data)
+      }
     })
-      .then(response => response.json())
+      .then(response => response.json());
 
     return response;
   }
-)
+);
+
+export const add_fold = createAsyncThunk(
+  'Autoris/add_fold',
+  async function (data) {
+    const API = "http://cerver/index.php?add_folder";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const add_card = createAsyncThunk(
+  'Autoris/add_card',
+  async function (data) {
+    const API = "http://cerver/index.php?add_card";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const change_icon = createAsyncThunk(
+  'Autoris/change_icon',
+  async function (data) {
+    const API = "http://cerver/index.php?change_icon";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const change_login = createAsyncThunk(
+  'Autoris/change_login',
+  async function (data) {
+    const API = "http://cerver/index.php?change_login";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const change_password = createAsyncThunk(
+  'Autoris/change_password',
+  async function (data) {
+    const API = "http://cerver/index.php?change_password";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const change_card_front = createAsyncThunk(
+  'Autoris/change_card_front',
+  async function (data) {
+    const API = "http://cerver/index.php?change_card_front";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
+
+export const change_card_back = createAsyncThunk(
+  'Autoris/change_card_back',
+  async function (data) {
+    const API = "http://cerver/index.php?change_card_back";
+    const response = await fetch(API, {
+      method: "POST",
+      header: {
+        'Content-Type': 'json/application'
+      },
+      body: {
+        info: JSON.stringify(data)
+      }
+    })
+      .then(response => response.json());
+
+    return response;
+  }
+);
 
 const Autoris = createSlice({
   name: 'Autoris',
   initialState: {
     list: {
       StatusOfLoad: "load",
-      persons: [],
-      folders: [],
-      current_game: [],
+      person: [],//храниться данные конкретного пользователя
+      folders: [],//храняться все папки пользователя
+      cards: [],//храняться все карточки пользователя
+      current_game: [],//нужно чтобы хранить данные о игре по конкретной папке
+      short_list: []//нужно для регистрации и авторизации, будет заполняться id, login, pass пользователей
     },
   },
-  reducers: {
-    ChangeIcon(state, action) {
-      state.list.persons.filter(el => el.online === true)[0].icon = action.payload.icon;
+  reducers: {//это функции, которые изменяют текущий state, то есть объект "list"
+    ChangeStatusOfLoad(state) {//это нужно, чтобы сделать анимацию загрузки данных пользователя с сервера, при его успешной авторизации
+      state.list.StatusOfLoad = "load";
     },
-    ChangeLogin(state, action) {
-      state.list.persons.filter(el => el.online === true)[0].login = action.payload.login;
+    ChangeIcon(state, action) {//изменение иконки у текущего пользователя
+      state.list.person[0].icon = action.payload.icon;
     },
-    ChangePassword(state, action) {
-      state.list.persons.filter(el => el.online === true)[0].password = action.payload.password;
+    ChangeLogin(state, action) {//изменеие логина у текущего пользователя
+      state.list.person[0].login = action.payload.login;
     },
-    ChangeOnline(state, action) {
-      state.list.persons.filter(el => el.id === action.payload)[0].online = true;
+    ChangePassword(state, action) {//изменение пароля у текущего пользователя
+      state.list.person[0].password = action.payload.password;
     },
-    CloseField(state, action) {
-      state.list.persons.filter(el => el.id === action.payload.id)[0].online = false;
+    CloseUserWork(state) {//если пользователь выходит с аккаунта, очищаем state со всеми его данными
+      state.list.person = [];
+      state.list.folders = [];
+      state.list.cards = [];
     },
-    CreateUser(state, action) {
+    CreateUser(state, action) {//при регистрации создаем пользователя (убрать, так как данные будут отправляться на сервер и подгружаться оттуда)
       state.list.persons.push({
         id: state.list.persons.length === 0 ? 1 : state.list.persons[state.list.persons.length - 1].id + 1,
         name: action.payload.name,
@@ -67,74 +257,82 @@ const Autoris = createSlice({
         online: action.payload.online
       })
     },
-    CreateFold(state, action) {
+    CreateFold(state, action) {//создание новой папки у текущего клиента
       state.list.folders.push({
-        user_Id: action.payload.user_id,
+        user_Id: state.list.person[0].id,
         id_folder: state.list.folders.length === 0 ? 1 : state.list.folders[state.list.folders.length - 1].id_folder + 1,
         name: action.payload.name,
-        icon: action.payload.user_icon,
+        icon: state.list.person[0].icon,
         amount_card: 0,
-        user_name: action.payload.user_name,
-        focus: false,
-        card: []
+        user_name: state.list.person[0].name,
+        focus: false,// флаг, который показывает, данные какой папки будут отображены на странице "setting_folder"
       })
     },
-    ChangeFocus(state, action) {
+    ChangeFocus(state, action) {//когда пользователь выходит\заходит из\на страницы\страницу "setting_folder" меняется флаг
       state.list.folders.filter(el => el.id_folder === action.payload.id)[0].focus = action.payload.status;
     },
-    CloseFocus(state, action) {
+    CloseFocus(state, action) {// убрать функция ChangeFocus может заменить по функционалу
       if (state.list.folders.filter(el => el.focus === true).length > 0) {
         state.list.folders.filter(el => el.focus === true)[0].focus = false;
       }
     },
-    DeleteFolder(state, action) {
-      state.list.folders = state.list.folders.filter(el => el.id_folder !== action.payload.id_folder);
+    DeleteFolder(state, action) {// процесс удаления папки
+      state.list.folders = state.list.folders.filter(el => el.id_folder !== action.payload.id_folder);//удаление папки
+
+      state.list.cards = state.list.cards.filter(el => el.id_folder !== action.payload.id_folder);//удаление карточек связанных с папкой
     },
-    CreateCard(state, action) {
-      const CardArr = state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card;
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.push({
-        id_card: CardArr.length === 0 ? 1 : CardArr[CardArr.length - 1].id_card + 1,
+    CreateCard(state, action) {//создание карточки 
+
+      state.list.cards.push({
+        id_card: state.list.cards.length === 0 ? 1 : state.list.cards[state.list.cards.length - 1].id_card + 1,
         id_folder: action.payload.id,
         front: action.payload.front,
         back: action.payload.back,
         card_type: "новые",
         time_create: new Date().toLocaleDateString()
       })
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].amount_card += 1;
+
+      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].amount_card += 1;//прибавление количества карточек к папке
+      // в которой лежит данная карточка
     },
-    DeleteCard(state, action) {
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].amount_card -= 1;
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card = state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.filter(el => el.id_card !== action.payload.id_card);
+    DeleteCard(state, action) {//удаление карточки
+      state.list.folders.filter(el => el.id_folder === action.payload.id_folder)[0].amount_card -= 1;//уменьшение количества карточек
+      //к папке, в которой лежит данная карточка
+      state.list.cards = state.list.cards.filter(el => el.id_card !== action.payload.id_card);
     },
-    ChangeCard(state, action) {
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.filter(el => el.id_card === action.payload.id_card)[0].front = action.payload.front;
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.filter(el => el.id_card === action.payload.id_card)[0].back = action.payload.back;
+    ChangeCard(state, action) {//изменение передней и задней части карточки
+      state.list.cards.filter(el => el.id_card === action.payload.id_card)[0].front = action.payload.front;
+      state.list.cards.filter(el => el.id_card === action.payload.id_card)[0].back = action.payload.back;
     },
-    GameInit(state, action) {
-      let helper = state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card;
+    GameInit(state, action) {//инициализация данных об игре, запускается, когда пользователь нажимает на кнопку
+      // начать игру по конкретной папке
+      let cards_arr = state.list.cards.filter(el => el.id_folder === action.payload.id_folder);
 
       state.list.current_game[0] = {
         folder_id: action.payload.id,
-        cards: helper.map(el => {
-          return {
-            id_card: el.id_card,
-            id_folder: el.id_folder,
-            front: el.front,
-            back: el.back,
-            card_type: "новые",
-            time_create: el.time_create
-          }
-        }),
-        new_cards: state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.length
+        cards: cards_arr
+        // cards_arr.map(el => {
+        //   return {
+        //     id_card: el.id_card,
+        //     id_folder: el.id_folder,
+        //     front: el.front,
+        //     back: el.back,
+        //     card_type: "новые",
+        //     time_create: el.time_create
+        //   }
+        // }),
+        // new_cards: state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.length
       }
     },
-    Game_DeleteCard(state, action) {
+    Game_DeleteCard(state, action) {//удаление карточки из очереди, если ее card_type="пройденные"
       state.list.current_game[0].cards = state.list.current_game[0].cards.filter(el => el.id_card !== action.payload.id);
     },
-    Game_ChangeCardType(state, action) {
+    Game_ChangeCardType(state, action) {//изменение статуса карточки, если пользователь нажал на кнопку "хорошо"
       state.list.current_game[0].cards.filter(el => el.id_card === action.payload.id)[0].card_type = action.payload.type;
     },
     Game_AddCard(state, action) {
+      //если пользователь нажал на кнопку "хорошо", карточка поменяет свой тип, будет удалена из очереди
+      //и тут в дело вступает эта функция, которая добавит эту карточку в конец очереди с уже новым статусом
       state.list.current_game[0].cards.push({
         id_card: action.payload.id,
         id_folder: action.payload.card.id_folder,
@@ -145,32 +343,56 @@ const Autoris = createSlice({
       });
     },
     Change_GeneralCardType(state, action) {
-      state.list.folders.filter(el => el.id_folder === action.payload.id)[0].card.filter(el => el.front === action.payload.front)[0].card_type = action.payload.new_card_type;
-    }
+      //когда игра закончиться, все карточки изменят свой статус на ступень выше
+      //это условие не касается карточек со статусом "хорошо" их статус не измениться
+      //чтобы обратиться к карточке будем использовать поле "front", так как в игре id карточки меняется и мы не сможем по нему
+      // найти туже карточку в массиве "cards", а поле "front" уникально
+      state.list.cards.filter(el => el.front === action.payload.front)[0] = action.payload.new_card_type;
+    },
+
+    // for (let i = 0; i < state.list.persons.length; i++) {
+    //   state.list.persons[i].id = Number(state.list.persons[i].id);
+    // }
+
+    // for (let i = 0; i < state.list.folders.length; i++) {
+    //   state.list.folders[i].id_folder = Number(state.list.folders[i].id_folder);
+    //   state.list.folders[i].user_Id = Number(state.list.folders[i].user_Id);
+    //   state.list.folders[i].amount_card = Number(state.list.folders[i].amount_card);
+    //   for (let j = 0; j < state.list.folders[i].card.length; j++) {
+    //     state.list.folders[i].card[j].id_card = Number(state.list.folders[i].card[j].id_card);
+    //     state.list.folders[i].card[j].id_folder = Number(state.list.folders[i].card[j].id_folder);
+    //   }
+    // }
+
   },
-  extraReducers: {
-    [InitBase.fulfilled]: (state, action) => {
-      state.list.persons = action.payload.persons;
-      state.list.folders = action.payload.folders;
+  extraReducers: {// тут идет работа непосредственно с ответами от сервера
+    [get_users_id_pass_login.fulfilled]: (state, action) => {//если мы получили id, pass, login пользователей, то
+      state.list.short_list = action.payload.persons;
 
-      for (let i = 0; i < state.list.persons.length; i++) {
-        state.list.persons[i].id = Number(state.list.persons[i].id);
-      }
+      state.list.StatusOfLoad = "installed";//тип загрузки "загружены"
+    },
+    [get_data_current_user.fulfilled]: (state, action) => {//если мы получили полный сет данных (пользовательские данные)
+      // папки пользователя и все его карточки, то идет инициализация текущего state данными, которые пришли с сервера
+      state.list.person = action.payload.person;
+      state.list.folders = action.payload.his_folders;
+      state.list.card = action.payload.his_cards;
 
-      for (let i = 0; i < state.list.folders.length; i++) {
+
+      for (let i = 0; i < state.list.folders; i++) {//изменение типов string - > integer
         state.list.folders[i].id_folder = Number(state.list.folders[i].id_folder);
         state.list.folders[i].user_Id = Number(state.list.folders[i].user_Id);
         state.list.folders[i].amount_card = Number(state.list.folders[i].amount_card);
-        for (let j = 0; j < state.list.folders[i].card.length; j++) {
-          state.list.folders[i].card[j].id_card = Number(state.list.folders[i].card[j].id_card);
-          state.list.folders[i].card[j].id_folder = Number(state.list.folders[i].card[j].id_folder);
-        }
+      }
+
+      for (let i = 0; i < state.list.card; i++) {//изменение типов string - > integer
+        state.list.card[i].id_card = Number(state.list.card[i].id_card);
+        state.list.card[i].id_folder = Number(state.list.card[i].id_folder);
       }
 
       state.list.StatusOfLoad = "installed";
-    },
+    }
   }
 })
 
-export const { CreateUser, CreateFold, DeleteFolder, CreateCard, DeleteCard, ChangeOnline, ChangeIcon, ChangeLogin, ChangePassword, ChangeCard, GameInit, Game_DeleteCard, Game_ChangeCardType, Game_AddCard, CloseField, Change_GeneralCardType, ChangeFocus, CloseFocus } = Autoris.actions
+export const { CreateUser, CreateFold, DeleteFolder, CreateCard, DeleteCard, ChangeOnline, ChangeIcon, ChangeLogin, ChangePassword, ChangeCard, GameInit, Game_DeleteCard, Game_ChangeCardType, Game_AddCard, CloseField, Change_GeneralCardType, ChangeFocus, CloseFocus, ChangeStatusOfLoad } = Autoris.actions
 export default Autoris.reducer
