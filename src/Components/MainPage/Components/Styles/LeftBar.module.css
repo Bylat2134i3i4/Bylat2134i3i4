@@ -5,10 +5,10 @@
     @apply absolute flex flex-col w-40 h-full bg-dark-blue top-0 left-0 bottom-0 border-2 border-gray-500;
   }
   .MainPage__LeftBar_TopBlock {
-    @apply flex w-full h-1/4 justify-center items-center bg-dark-blue;
+    @apply flex w-full h-1/4 justify-center items-center bg-black-blue;
   }
   .TopBlock__img {
-    @apply rounded-full w-1/2 h-1/2;
+    @apply rounded-full w-[100px] h-[100px];
   }
   .MainPage__Header_BottomBlock {
     @apply flex flex-col w-full h-full bg-[url('../../../../../Img/General.jpg')] bg-cover;

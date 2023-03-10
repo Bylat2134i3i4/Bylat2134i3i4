@@ -9,14 +9,14 @@
   }
   .Profile__main {
     @apply flex flex-row w-full h-full border-2 border-gray-500 border-t-0
-    MinBlock:flex-col;
+    MinBlock:flex-col MinBlock:overflow-hidden;
   }
   .main__LeftSide {
-    @apply flex flex-col justify-start w-1/4 h-full bg-black-blue border-r-2 border-gray-500 
+    @apply flex flex-col justify-start w-1/4 h-full bg-black-blue border-r-2 border-gray-500
     MinBlock:flex-row MinBlock:h-1/4 MinBlock:w-full MinBlock:items-center MinBlock:border-r-0 MinBlock:border-b-2;
   }
   .LeftSide__Img {
-    @apply w-auto h-1/4 mt-10 mx-auto rounded-sm 
+    @apply w-11/12 h-auto mt-10 mx-auto rounded-md 
     MinBlock:h-5/6 MinBlock:w-auto MinBlock:mt-0 MinBlock:ml-10;
   }
   .LeftSide__TextBlock {

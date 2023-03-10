@@ -20,6 +20,6 @@
     @apply w-auto h-full;
   }
   .GeneralBlock_EazyText {
-    @apply flex w-1/2 h-full justify-start;
+    @apply flex w-1/2 h-full justify-center;
   }
 }
