@@ -124,6 +124,12 @@ const Reg = () => {
                     navite('/general');
                   }, 3000);
                 } else {
+                  setTimeout(() => {
+                    ChangeErrorColor({
+                      FirstInputRed: '',
+                      SecondInputRed: '',
+                    });
+                  }, 1500);
                   ChangeErrorColor({
                     FirstInputRed: 'shadow-lg shadow-red-500',
                     SecondInputRed: 'shadow-lg shadow-red-500',
@@ -131,12 +137,24 @@ const Reg = () => {
                 }
               }
               if (CheckInput() === '1') {
+                setTimeout(() => {
+                  ChangeErrorColor({
+                    FirstInputRed: '',
+                    SecondInputRed: '',
+                  });
+                }, 1500);
                 ChangeErrorColor({
                   FirstInputRed: 'shadow-lg shadow-red-500',
                   SecondInputRed: '',
                 });
               }
               if (CheckInput() === '2') {
+                setTimeout(() => {
+                  ChangeErrorColor({
+                    FirstInputRed: '',
+                    SecondInputRed: '',
+                  });
+                }, 1500);
                 ChangeErrorColor({
                   FirstInputRed: '',
                   SecondInputRed: 'shadow-lg shadow-red-500',

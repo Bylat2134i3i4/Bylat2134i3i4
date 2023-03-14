@@ -5,7 +5,7 @@
     @apply flex w-3/4 h-3/4 flex-col border-2 rounded-md border-gray-500 text-white text-base bg-black-blue;
   }
   .base__TopBlock {
-    @apply flex h-1/5 w-full items-center justify-center border-b-2 border-gray-500;
+    @apply flex flex-col h-1/5 w-full items-center justify-start border-b-2 border-gray-500;
   }
   .base__BottomBlock {
     @apply flex w-full h-4/5
@@ -27,12 +27,15 @@
     MiddleBlock:w-full MiddleBlock:h-3/4;
   }
   .RightSide__TextBlock {
-    @apply justify-center h-1/5 w-full items-center;
+    @apply h-auto w-min my-2 mx-auto bg-dark-blue;
   }
   .RightSide__ButtonBlock {
     @apply mt-auto justify-around w-full h-1/5 items-center;
   }
   .ButtonBlock__Button {
     @apply transition-all w-auto h-auto rounded-md border-b-4 border-white hover:text-black hover:border-black;
+  }
+  .Description {
+    @apply w-full h-auto text-lg font-bold flex justify-center items-start;
   }
 }

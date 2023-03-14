@@ -18,14 +18,13 @@ export const get_users_id_pass_login = createAsyncThunk(
 export const change_card_type = createAsyncThunk(
   'Autoris/change_card_type',
   async function (array) {
-    const response = await fetch("http://cerver/index.php?change_card_type", {
+    await fetch("http://cerver/index.php?change_card_type", {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(array)
     })
-      .then(response => response.json())
   }
 );
 
@@ -33,15 +32,12 @@ export const del_fold = createAsyncThunk(
   'Autoris/del_fold',
   async function (data) {
     const API = "http://cerver/index.php?delete_folder=" + data.id_folder;
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "GET",
       header: {
         'Content-Type': 'json/application'
       }
     })
-      .then(response => response.json());
-
-    //return response;
   }
 );
 
@@ -49,15 +45,12 @@ export const del_card = createAsyncThunk(
   'Autoris/del_card',
   async function (data) {
     const API = "http://cerver/index.php?delete_card=" + data.id;
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "GET",
       header: {
         'Content-Type': 'json/application'
       }
     })
-      .then(response => response.json());
-
-    //return response;
   }
 );
 
@@ -87,14 +80,13 @@ export const add_user = createAsyncThunk(
       password: object.password,
       icon: ""
     }
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(data)
     })
-    //return response;
   }
 );
 
@@ -143,16 +135,13 @@ export const change_icon = createAsyncThunk(
   'Autoris/change_icon',
   async function (data) {
     const API = "http://cerver/index.php?change_icon";
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json());
-
-    //return response;
   }
 );
 
@@ -160,16 +149,13 @@ export const change_login = createAsyncThunk(
   'Autoris/change_login',
   async function (data) {
     const API = "http://cerver/index.php?change_login";
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json());
-
-    //return response;
   }
 );
 
@@ -177,16 +163,13 @@ export const change_password = createAsyncThunk(
   'Autoris/change_password',
   async function (data) {
     const API = "http://cerver/index.php?change_password";
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json());
-
-    // return response;
   }
 );
 
@@ -194,16 +177,13 @@ export const change_card_look = createAsyncThunk(
   'Autoris/change_card_look',
   async function (data) {
     const API = "http://cerver/index.php?change_card_look";
-    const response = await fetch(API, {
+    await fetch(API, {
       method: "POST",
       header: {
         'Content-Type': 'json/application'
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json());
-
-    //return response;
   }
 );
 
@@ -240,17 +220,6 @@ const Autoris = createSlice({
       state.list.StatusOfLoad = "load";
       state.list.current_game = [];
     },
-    // CreateFold(state, action) {//создание новой папки у текущего клиента
-    //   state.list.folders.push({
-    //     user_Id: state.list.person[0].id,
-    //     id_folder: state.list.folders.length === 0 ? 0 : state.list.folders[state.list.folders.length - 1].id_folder + 1,
-    //     name: action.payload.name,
-    //     icon: state.list.person[0].icon,
-    //     amount_card: 0,
-    //     user_name: state.list.person[0].name,
-    //     focus: false,// флаг, который показывает, данные какой папки будут отображены на странице "setting_folder"
-    //   })
-    // },
     ChangeFocus(state, action) {//когда пользователь выходит\заходит из\на страницы\страницу "setting_folder" меняется флаг
       state.list.folders.filter(el => el.id_folder === action.payload.id)[0].focus = action.payload.status;
     },
@@ -264,20 +233,6 @@ const Autoris = createSlice({
 
       state.list.cards = state.list.cards.filter(el => el.id_folder !== action.payload.id_folder);//удаление карточек связанных с папкой
     },
-    // CreateCard(state, action) {//создание карточки 
-
-    //   state.list.cards.push({
-    //     id_card: state.list.cards.length === 0 ? 0 : state.list.cards[state.list.cards.length - 1].id_card + 1,
-    //     id_folder: action.payload.id,
-    //     front: action.payload.front,
-    //     back: action.payload.back,
-    //     card_type: "новые",
-    //     time_create: new Date().toLocaleDateString()
-    //   })
-
-    //   state.list.folders.filter(el => el.id_folder === action.payload.id)[0].amount_card += 1;//прибавление количества карточек к папке
-    //   // в которой лежит данная карточка
-    // },
     DeleteCard(state, action) {//удаление карточки
       state.list.folders.filter(el => el.id_folder === action.payload.id_folder)[0].amount_card -= 1;//уменьшение количества карточек
       //к папке, в которой лежит данная карточка
@@ -289,7 +244,6 @@ const Autoris = createSlice({
     },
     GameInit(state, action) {//инициализация данных об игре, запускается, когда пользователь нажимает на кнопку
       // начать игру по конкретной папке
-      //console.log(state.list.cards[0].filter(el => el.id_folder === action.payload.id));
 
       state.list.current_game[0] = {
         folder_id: action.payload.id,

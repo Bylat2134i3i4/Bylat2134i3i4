@@ -115,7 +115,10 @@ const Main = () => {
 
   return (
     <div className={MainCss.Game__Main_base}>
-      <div className={MainCss.base__TopBlock}>{CurrentElement(1)}</div>
+      <div className={MainCss.base__TopBlock}>
+        <div className={MainCss.Description}>видимая сторона карточки</div>
+        <div className='flex w-auto h-auto bg-dark-blue my-auto'>{CurrentElement(1)}</div>
+      </div>
       <div className={MainCss.base__BottomBlock}>
         <div className={MainCss.BottomBlock__LeftSide}>
           <div className={classNames(MainCss.LeftSide__Block, 'text-blue-500')}>
@@ -132,6 +135,7 @@ const Main = () => {
           </div>
         </div>
         <div className={MainCss.BottomBlock__RightSide}>
+          <div className={MainCss.Description}>сокрытая сторона карточки</div>
           <div className={classNames(MainCss.RightSide__TextBlock, Show)}>{CurrentElement(2)}</div>
           <div className={classNames(MainCss.RightSide__ButtonBlock, ShowBlock.Visible2)}>
             <button
